@@ -25,6 +25,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/added_margin"
+        android:layout_marginStart="@dimen/added_margin"
+        android:layout_marginEnd="@dimen/added_margin"
+        android:layout_marginLeft="@dimen/added_margin"
+        android:layout_marginRight="@dimen/added_margin"
         android:background="@android:color/transparent">
 
         <include layout="@layout/mdtp_date_picker_selected_date" />

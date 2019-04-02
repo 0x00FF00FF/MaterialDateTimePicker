@@ -23,14 +23,9 @@ import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
-import androidx.fragment.app.DialogFragment;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import android.text.format.DateFormat;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -55,6 +50,14 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.DialogFragment;
 
 /**
  * Dialog allowing users to select a date.
@@ -194,6 +197,7 @@ public class DatePickerDialog extends DialogFragment implements
 
     /**
      * Create a new DatePickerDialog instance with a specific initial selection.
+     *
      * @param callBack    How the parent is notified that the date is set.
      * @param year        The initial year of the dialog.
      * @param monthOfYear The initial month of the dialog.
@@ -208,6 +212,7 @@ public class DatePickerDialog extends DialogFragment implements
 
     /**
      * Create a new DatePickerDialog instance initialised to the current system date.
+     *
      * @param callback How the parent is notified that the date is set.
      * @return a new DatePickerDialog instance
      */
@@ -219,6 +224,7 @@ public class DatePickerDialog extends DialogFragment implements
 
     /**
      * Create a new DatePickerDialog instance with a specific initial selection.
+     *
      * @param callback         How the parent is notified that the date is set.
      * @param initialSelection A Calendar object containing the original selection of the picker.
      *                         (Time is ignored by trimming the Calendar to midnight in the current
@@ -398,7 +404,12 @@ public class DatePickerDialog extends DialogFragment implements
 
         int bgColorResource = mThemeDark ? R.color.mdtp_date_picker_view_animator_dark_theme : R.color.mdtp_date_picker_view_animator;
         int bgColor = ContextCompat.getColor(activity, bgColorResource);
-        view.setBackgroundColor(bgColor);
+        if (backgroundDrawableRes != -1) {
+            // noinspection deprecation
+            view.setBackgroundDrawable(ContextCompat.getDrawable(activity, backgroundDrawableRes));
+        } else {
+            view.setBackgroundColor(bgColor);
+        }
 
         mAnimator = view.findViewById(R.id.mdtp_animator);
         mAnimator.addView(mDayPickerView);
@@ -437,7 +448,8 @@ public class DatePickerDialog extends DialogFragment implements
         if (mAccentColor == -1) {
             mAccentColor = Utils.getAccentColorFromThemeIfAvailable(getActivity());
         }
-        if (mDatePickerHeaderView != null) mDatePickerHeaderView.setBackgroundColor(Utils.darkenColor(mAccentColor));
+        if (mDatePickerHeaderView != null)
+            mDatePickerHeaderView.setBackgroundColor(Utils.darkenColor(mAccentColor));
         view.findViewById(R.id.mdtp_day_picker_selected_date_layout).setBackgroundColor(mAccentColor);
 
         // Buttons can have a different color
@@ -476,7 +488,8 @@ public class DatePickerDialog extends DialogFragment implements
         }
     }
 
-    @Override @NonNull
+    @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -882,6 +895,7 @@ public class DatePickerDialog extends DialogFragment implements
 
     /**
      * Provide a DateRangeLimiter for full control over which dates are enabled and disabled in the picker
+     *
      * @param dateRangeLimiter An implementation of the DateRangeLimiter interface
      */
     @SuppressWarnings("unused")
@@ -960,6 +974,7 @@ public class DatePickerDialog extends DialogFragment implements
 
     /**
      * Set which way the user needs to swipe to switch months in the MonthView
+     *
      * @param orientation The orientation to use
      */
     public void setScrollOrientation(ScrollOrientation orientation) {
@@ -968,6 +983,7 @@ public class DatePickerDialog extends DialogFragment implements
 
     /**
      * Get which way the user needs to swipe to switch months in the MonthView
+     *
      * @return SwipeOrientation
      */
     public ScrollOrientation getScrollOrientation() {
@@ -976,9 +992,10 @@ public class DatePickerDialog extends DialogFragment implements
 
     /**
      * Set which timezone the picker should use
-     *
+     * <p>
      * This has been deprecated in favor of setting the TimeZone using the constructor that
      * takes a Calendar object
+     *
      * @param timeZone The timezone to use
      */
     @SuppressWarnings("DeprecatedIsStillUsed")
@@ -993,6 +1010,7 @@ public class DatePickerDialog extends DialogFragment implements
 
     /**
      * Set a custom locale to be used when generating various strings in the picker
+     *
      * @param locale Locale
      */
     public void setLocale(Locale locale) {
@@ -1005,6 +1023,7 @@ public class DatePickerDialog extends DialogFragment implements
 
     /**
      * Return the current locale (default or other)
+     *
      * @return Locale
      */
     @Override
@@ -1029,6 +1048,7 @@ public class DatePickerDialog extends DialogFragment implements
 
     /**
      * Get a reference to the callback
+     *
      * @return OnDateSetListener the callback
      */
     @SuppressWarnings("unused")
@@ -1137,7 +1157,8 @@ public class DatePickerDialog extends DialogFragment implements
         if (mVibrate) mHapticFeedbackController.tryVibrate();
     }
 
-    @Override public TimeZone getTimeZone() {
+    @Override
+    public TimeZone getTimeZone() {
         return mTimezone == null ? TimeZone.getDefault() : mTimezone;
     }
 
@@ -1147,4 +1168,20 @@ public class DatePickerDialog extends DialogFragment implements
                     mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH));
         }
     }
+
+    public void setBackground(@DrawableRes int backgroundId) {
+        View fragmentView = getView();
+        if (fragmentView == null) {
+            backgroundDrawableRes = backgroundId;
+        } else {
+            Activity activity = getActivity();
+            if (activity != null) {
+                Drawable background = ContextCompat.getDrawable(activity, backgroundId);
+                // noinspection deprecation
+                fragmentView.setBackgroundDrawable(background);
+            }
+        }
+    }
+
+    private int backgroundDrawableRes = -1;
 }

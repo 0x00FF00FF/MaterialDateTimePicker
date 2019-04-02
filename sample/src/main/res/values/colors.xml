@@ -1,0 +1,31 @@
+<resources>
+    <!-- - - - -->
+    <color name="semitransparent_black_left">#BB000000</color>
+    <color name="semitransparent_black_right">#33000000</color>
+    <color name="semitransparent_black_left_selected">#99000000</color>
+    <color name="semitransparent_black_right_selected">#11000000</color>
+    <color name="semitransparent_black_left_issues">#99000000</color>
+    <color name="semitransparent_black_left_selected_issues">#66000000</color>
+
+    <!--material.indigo-->
+    <color name="indigo_100_blacked">#30344B</color>
+    <color name="indigo_100_blacked_transparent">#4030344B</color>
+    <color name="indigo_100_grayed">#606586</color>
+    <color name="indigo.050">#E8EAF6</color>
+    <color name="indigo.100">#c5cae9</color>
+    <color name="indigo.200">#9FA8DA</color>
+    <color name="indigo.300">#7986CB</color>
+    <color name="indigo.400">#5C6BC0</color>
+    <color name="indigo.500">#3F51B5</color>
+    <color name="indigo.600">#3949AB</color>
+    <color name="indigo.700">#303F9F</color>
+    <color name="indigo.800">#283593</color>
+    <color name="indigo.900">#1A237E</color>
+    <color name="indigo.A100">#8C9EFF</color>
+    <color name="indigo.A100_grayed">#535d91</color>
+    <color name="indigo.A200">#536DFE</color>
+    <color name="indigo.A400">#3D5AFE</color>
+    <color name="indigo.A700">#304FFE</color>
+
+    <color name="pureWhite">#FFFFFF</color>
+</resources>

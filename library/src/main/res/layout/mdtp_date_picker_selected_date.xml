@@ -23,7 +23,13 @@
     android:layout_weight="1"
     android:background="@color/mdtp_accent_color"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginStart="@dimen/added_margin"
+    android:layout_marginEnd="@dimen/added_margin"
+    android:layout_marginLeft="@dimen/added_margin"
+    android:layout_marginRight="@dimen/added_margin"
+    android:layout_marginBottom="@dimen/added_margin"
+    >
 
     <com.wdullaer.materialdatetimepicker.AccessibleLinearLayout
         android:id="@+id/mdtp_date_picker_month_and_day"

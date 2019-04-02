@@ -24,4 +24,10 @@
     android:textColor="@color/mdtp_white"
     android:textSize="@dimen/mdtp_date_picker_header_text_size"
     android:textAllCaps="@bool/mdtp_title_all_caps"
-    android:importantForAccessibility="no" />
+    android:importantForAccessibility="no"
+    android:layout_marginTop="@dimen/added_margin"
+    android:layout_marginLeft="@dimen/added_margin"
+    android:layout_marginStart="@dimen/added_margin"
+    android:layout_marginRight="@dimen/added_margin"
+    android:layout_marginEnd="@dimen/added_margin"
+    />
