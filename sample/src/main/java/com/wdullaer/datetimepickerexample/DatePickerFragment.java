@@ -96,7 +96,7 @@ public class DatePickerFragment extends Fragment implements DatePickerDialog.OnD
 //            dpd.setThemeDark(modeDarkDate.isChecked());
 
             dpd.setThemeDark(true);
-            dpd.setBackground(modeDarkDate.isChecked() ? R.drawable.background_app : R.drawable.background_app_white);
+            dpd.setBackground(modeDarkDate.isChecked() ? R.drawable.background_date_picker : R.drawable.background_date_picker_white);
 
             dpd.vibrate(vibrateDate.isChecked());
             dpd.dismissOnPause(dismissDate.isChecked());

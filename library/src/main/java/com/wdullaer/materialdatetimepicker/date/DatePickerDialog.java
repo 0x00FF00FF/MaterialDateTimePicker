@@ -434,7 +434,7 @@ public class DatePickerDialog extends DialogFragment implements
         if (mOkString != null) okButton.setText(mOkString);
         else okButton.setText(mOkResid);
 
-        Button cancelButton = view.findViewById(R.id.mdtp_cancel);
+        TextView cancelButton = view.findViewById(R.id.mdtp_cancel);
         cancelButton.setOnClickListener(v -> {
             tryVibrate();
             if (getDialog() != null) getDialog().cancel();
