@@ -1,3 +1,8 @@
+This fork allows you to set a background drawable to the date picker.
+For now it doesn't add any new functionality to the time picker.
+
+Following is the default readme from the original project.
+
 # Material DateTime Picker - Select a time/date in style
 
 [![Join the chat at https://gitter.im/wdullaer/MaterialDateTimePicker](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/wdullaer/MaterialDateTimePicker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
