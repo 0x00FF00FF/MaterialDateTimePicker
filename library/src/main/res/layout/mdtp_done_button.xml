@@ -26,18 +26,19 @@
     <Button
         android:id="@+id/mdtp_ok"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
         style="@style/mdtp_ActionButton.Text"
         android:text="@string/mdtp_ok" />
 
     <TextView
         android:id="@+id/mdtp_cancel"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_marginRight="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="48dp"
+        android:minWidth="64dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
         android:focusable="true"
         android:clickable="true"
         style="@style/mdtp_ActionButton.Text"
